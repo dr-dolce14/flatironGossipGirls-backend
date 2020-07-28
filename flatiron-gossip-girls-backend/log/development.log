@@ -1,0 +1,1475 @@
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCelebrities (20200728170142)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "celebrities" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "image" varchar, "occupation" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200728170142"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePosts (20200728170543)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "celebrity_id" integer NOT NULL, "headline" varchar, "content" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_501d7c1954"
+FOREIGN KEY ("celebrity_id")
+  REFERENCES "celebrities" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_posts_on_celebrity_id" ON "posts" ("celebrity_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200728170543"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-28 17:30:05.413326"], ["updated_at", "2020-07-28 17:30:05.413326"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCelebrity Destroy (0.5ms)[0m  [1m[31mDELETE FROM "celebrities"[0m
+  [1m[36mPost Destroy (0.3ms)[0m  [1m[31mDELETE FROM "posts"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCelebrity Destroy (0.1ms)[0m  [1m[31mDELETE FROM "celebrities"[0m
+  [1m[36mPost Destroy (0.1ms)[0m  [1m[31mDELETE FROM "posts"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (1.1ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Megan Fox"], ["image", "https://www.wonderwall.com/wp-content/uploads/sites/2/2020/05/shutterstock_editorial_10495961ca.jpg?h=800"], ["occupation", "Actress"], ["created_at", "2020-07-28 17:52:20.156147"], ["updated_at", "2020-07-28 17:52:20.156147"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Angelina Jolie"], ["image", "https://eonlinethumbs-a.akamaihd.net/images/894/331/wochit_20200620_jolie_309185_560x315_1753720899547.jpg?fit=around|660:372&output-quality=90&crop=660:372;center,top"], ["occupation", "Actress"], ["created_at", "2020-07-28 17:52:20.160906"], ["updated_at", "2020-07-28 17:52:20.160906"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.4ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kylie Jenner"], ["image", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F14%2F2019%2F10%2F29%2Fkylie-jenner-wine-lead.jpg"], ["occupation", "Instagram Model"], ["created_at", "2020-07-28 17:52:20.164609"], ["updated_at", "2020-07-28 17:52:20.164609"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kim Kardashian"], ["image", "https://pbs.twimg.com/profile_images/1282057272357683201/hm0ianWU_400x400.jpg"], ["occupation", "Instagram Model"], ["created_at", "2020-07-28 17:52:20.169883"], ["updated_at", "2020-07-28 17:52:20.169883"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Justin Bieber"], ["image", "https://img.timeinc.net/time/photoessays/2010/justin_bieber/justin_bieber_01.jpg"], ["occupation", "Singer"], ["created_at", "2020-07-28 17:52:20.173592"], ["updated_at", "2020-07-28 17:52:20.173592"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kanye West"], ["image", "https://nypost.com/wp-content/uploads/sites/2/2020/07/kanye-west.jpg?quality=80&strip=all&w=618&h=410&crop=1"], ["occupation", "Singer"], ["created_at", "2020-07-28 17:52:20.177304"], ["updated_at", "2020-07-28 17:52:20.177304"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Beyonce"], ["image", "https://cdn1.thr.com/sites/default/files/2019/04/beyonce-getty-h_2019_.jpg"], ["occupation", "Singer"], ["created_at", "2020-07-28 17:52:20.180825"], ["updated_at", "2020-07-28 17:52:20.180825"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Katy Perry"], ["image", "https://www.media3.hw-static.com/media/2020/03/katy-perry_katy-perry-at-jimmy-kimmel-live_2020-1800x1200.jpg"], ["occupation", "Singer"], ["created_at", "2020-07-28 17:52:20.184482"], ["updated_at", "2020-07-28 17:52:20.184482"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.2ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Gordon Ramsay"], ["image", "https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5ed53f23da1f770006140c3c%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D1567%26cropX2%3D3494%26cropY1%3D155%26cropY2%3D2083"], ["occupation", "Chef"], ["created_at", "2020-07-28 17:52:20.188091"], ["updated_at", "2020-07-28 17:52:20.188091"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Charlie Puth"], ["image", "https://cloudfront-us-east-1.images.arcpublishing.com/advancelocal/NIRRRC3HGNAAJJDILPT5LG5CXQ.jpg"], ["occupation", "Singer"], ["created_at", "2020-07-28 17:52:20.191878"], ["updated_at", "2020-07-28 17:52:20.191878"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.4ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Eminem"], ["image", "https://media1.fdncms.com/metrotimes/imager/u/original/24603024/shutterstock_1632717139.jpg"], ["occupation", "Rapper"], ["created_at", "2020-07-28 17:52:20.195992"], ["updated_at", "2020-07-28 17:52:20.195992"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Charli D'Amelio"], ["image", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/104340622-2858579234252300-3273629757514476408-n-1594303639.jpg"], ["occupation", "Tik Tok Star"], ["created_at", "2020-07-28 17:52:20.199822"], ["updated_at", "2020-07-28 17:52:20.199822"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Addison Rae"], ["image", "https://img.republicworld.com/republic-prod/stories/images/15898683605ec37748871a0.jpg"], ["occupation", "Tik Tok Star"], ["created_at", "2020-07-28 17:52:20.202977"], ["updated_at", "2020-07-28 17:52:20.202977"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.3ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Juice Wrld"], ["image", "https://i1.wp.com/nypost.com/wp-content/uploads/sites/2/2019/05/juice-wrld-1a.jpg?quality=80&strip=all&ssl=1"], ["occupation", "Rapper"], ["created_at", "2020-07-28 17:52:20.206039"], ["updated_at", "2020-07-28 17:52:20.206039"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Create (0.2ms)[0m  [1m[32mINSERT INTO "celebrities" ("name", "image", "occupation", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Drake"], ["image", "https://static01.nyt.com/images/2019/12/27/arts/27playlist/merlin_155953353_06939b86-7458-44a6-8781-57e2eaa661aa-articleLarge.jpg?quality=75&auto=webp&disable=upscale"], ["occupation", "Rapper"], ["created_at", "2020-07-28 17:52:20.209011"], ["updated_at", "2020-07-28 17:52:20.209011"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Load (0.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" WHERE "celebrities"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPost Create (0.8ms)[0m  [1m[32mINSERT INTO "posts" ("celebrity_id", "headline", "content", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["celebrity_id", 1], ["headline", "Jennifer's Body is Making a Comeback"], ["content", "Jennifer's Body should have made a bigger splash when it came out in 2009. As we approach Halloween, nearly ten years later, it's worth considering that its themes of abuse, empowerment, and accountability would likely be a winning formula with horror movie critics in the #MeToo era."], ["image", "https://img.buzzfeed.com/buzzfeed-static/static/2018-12/7/14/campaign_images/buzzfeed-prod-web-06/you-probably-owe-jennifers-body-an-apology-2-4566-1544210055-6_dblbig.jpg"], ["created_at", "2020-07-28 17:52:20.254984"], ["updated_at", "2020-07-28 17:52:20.254984"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Load (0.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" WHERE "celebrities"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("celebrity_id", "headline", "content", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["celebrity_id", 1], ["headline", "Unexpected Love"], ["content", "Machine Gun Kelly just revealed he has a major thing for Megan Fox's feet and really wanted her to put them on his face for the Bloody Valentine music video. He told Teen Vogue, 'It's no secret. I think feet are beautiful. And I think Megan has the most beautiful feet that exist.'"], ["image", "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F06%2F27%2Fmegan-fox.jpg"], ["created_at", "2020-07-28 17:52:20.261314"], ["updated_at", "2020-07-28 17:52:20.261314"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Load (0.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" WHERE "celebrities"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("celebrity_id", "headline", "content", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["celebrity_id", 15], ["headline", "Abel, Drake, and Showing the Receipts"], ["content", "While some celebrities have been called out for the amount of their donations to Black Lives Matter related organisations, including bail-out funding programs for protestors and assistance to those who are both protesting and trying to protect themselves during the pandemic, considering how wealthy they are, others have been pulling up financially, not because they're trying to show off how wealthy they are but because they're challenging their peers to do the same."], ["image", "https://photos.laineygossip.com/thumbs/tmb_730x450_abel-drake-02jun20.jpg"], ["created_at", "2020-07-28 17:52:20.265659"], ["updated_at", "2020-07-28 17:52:20.265659"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Load (0.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" WHERE "celebrities"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mPost Create (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("celebrity_id", "headline", "content", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["celebrity_id", 5], ["headline", "HELP THE BROKEN"], ["content", "Justin Bieber urges fans to 'have compassion for those who are hurting' after visiting Kanye West at his Wyoming ranch"], ["image", "https://static.vibe.com/files/photo_gallery_images/Tisci-3-compressed.png"], ["created_at", "2020-07-28 17:52:20.272184"], ["updated_at", "2020-07-28 17:52:20.272184"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCelebrity Load (0.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" WHERE "celebrities"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("celebrity_id", "headline", "content", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["celebrity_id", 3], ["headline", "Kylie Jenner spoils two-year-old daughter Stormi"], ["content", "The baggy top was emblazoned with the words 'wish you were here' on the back.Kylie also dressed Stormi in a pair of grey shorts and added a cute half up do in her curly locks.Although the youngster's face was hidden from the camera, she confidently strode around the outdoor space with her designer purse in tow."], ["image", "https://i2-prod.mirror.co.uk/incoming/article22286948.ece/ALTERNATES/s615b/1_Kylie-Jenner.jpg"], ["created_at", "2020-07-28 17:52:20.278082"], ["updated_at", "2020-07-28 17:52:20.278082"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCelebrity Load (0.6ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mCelebrity Load (0.5ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities" ORDER BY "celebrities"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ? LIMIT ?[0m  [["celebrity_id", 1], ["LIMIT", 11]]
+Started GET "/celebrities" for ::1 at 2020-07-28 14:33:03 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CelebritiesController#index as HTML
+  [1m[36mCelebrity Load (0.5ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 56ms (Views: 48.1ms | ActiveRecord: 3.9ms | Allocations: 31594)
+
+
+Started GET "/favicon.ico" for ::1 at 2020-07-28 14:33:04 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/celebrities" for ::1 at 2020-07-28 14:35:49 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 49ms (Views: 44.7ms | ActiveRecord: 3.9ms | Allocations: 18397)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:38:04 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 56ms (Views: 52.4ms | ActiveRecord: 3.3ms | Allocations: 18345)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:38:40 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 40ms (Views: 37.0ms | ActiveRecord: 2.6ms | Allocations: 18344)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:41:23 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 85ms (Views: 80.3ms | ActiveRecord: 3.5ms | Allocations: 18330)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:45:08 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (1.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 74ms (Views: 69.8ms | ActiveRecord: 3.7ms | Allocations: 18342)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:54:56 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.9ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 158ms (Views: 146.4ms | ActiveRecord: 6.0ms | Allocations: 18365)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:57:27 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.7ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 56ms (Views: 50.3ms | ActiveRecord: 5.4ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:59:13 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 101ms (Views: 98.1ms | ActiveRecord: 2.8ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 14:59:43 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 41ms (Views: 37.0ms | ActiveRecord: 4.0ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:00:06 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 58ms (Views: 54.4ms | ActiveRecord: 2.8ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:00:28 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 65ms (Views: 61.4ms | ActiveRecord: 3.3ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:01:41 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.5ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 36ms (Views: 32.6ms | ActiveRecord: 2.9ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:02:26 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 38ms (Views: 34.0ms | ActiveRecord: 3.2ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:03:55 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 85ms (Views: 81.4ms | ActiveRecord: 3.1ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:05:54 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.3ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (2.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 151ms (Views: 146.0ms | ActiveRecord: 4.7ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:14:30 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (1.5ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (2.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 148ms (Views: 118.3ms | ActiveRecord: 6.6ms | Allocations: 18365)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:14:47 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.3ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 71ms (Views: 67.9ms | ActiveRecord: 3.1ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:19:41 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.3ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 112ms (Views: 108.2ms | ActiveRecord: 3.5ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:21:47 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 66ms (Views: 62.9ms | ActiveRecord: 2.9ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:21:54 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 38ms (Views: 33.5ms | ActiveRecord: 3.9ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:22:53 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.5ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (2.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 45ms (Views: 38.7ms | ActiveRecord: 5.5ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:24:16 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (2.9ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 86ms (Views: 75.5ms | ActiveRecord: 6.1ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:24:24 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 40ms (Views: 36.1ms | ActiveRecord: 3.3ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:24:27 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 40ms (Views: 36.6ms | ActiveRecord: 3.0ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:24:45 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 62ms (Views: 57.2ms | ActiveRecord: 2.7ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:26:38 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (1.1ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 46ms (Views: 41.3ms | ActiveRecord: 4.7ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:27:03 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 31ms (Views: 28.4ms | ActiveRecord: 2.3ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:28:49 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 42ms (Views: 38.2ms | ActiveRecord: 3.6ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:29:30 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 47ms (Views: 44.5ms | ActiveRecord: 2.6ms | Allocations: 18329)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:29:58 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 37ms (Views: 33.4ms | ActiveRecord: 3.6ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:55:56 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (3.6ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 194ms (Views: 171.2ms | ActiveRecord: 8.4ms | Allocations: 18365)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:56:33 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (5.4ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 299ms (Views: 289.0ms | ActiveRecord: 9.9ms | Allocations: 18330)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:56:49 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.2ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 47ms (Views: 43.6ms | ActiveRecord: 3.5ms | Allocations: 18326)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:57:20 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.3ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 45ms (Views: 41.7ms | ActiveRecord: 2.8ms | Allocations: 18327)
+
+
+Started GET "/celebrities" for ::1 at 2020-07-28 15:58:46 -0400
+Processing by CelebritiesController#index as */*
+  [1m[36mCelebrity Load (0.3ms)[0m  [1m[34mSELECT "celebrities".* FROM "celebrities"[0m
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 1]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 2]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 3]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 4]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 5]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 6]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 7]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 8]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 9]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 10]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 11]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 12]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 13]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 14]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."celebrity_id" = ?[0m  [["celebrity_id", 15]]
+  ↳ app/controllers/celebrities_controller.rb:6:in `index'
+Completed 200 OK in 58ms (Views: 54.8ms | ActiveRecord: 2.7ms | Allocations: 18329)
+
+

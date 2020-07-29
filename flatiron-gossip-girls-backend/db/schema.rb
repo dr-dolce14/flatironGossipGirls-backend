@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_170543) do
+ActiveRecord::Schema.define(version: 2020_07_29_192206) do
 
   create_table "celebrities", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2020_07_28_170543) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "joy"
+    t.integer "shock"
+    t.integer "sad"
+    t.integer "anger"
+    t.integer "poop"
     t.index ["celebrity_id"], name: "index_posts_on_celebrity_id"
   end
 

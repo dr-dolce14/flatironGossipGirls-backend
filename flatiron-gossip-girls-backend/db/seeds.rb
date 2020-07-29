@@ -9,6 +9,7 @@
 Celebrity.delete_all
 Post.delete_all
 
+
 c1 = Celebrity.create(name: "Megan Fox", image: "https://www.wonderwall.com/wp-content/uploads/sites/2/2020/05/shutterstock_editorial_10495961ca.jpg?h=800", occupation: "Actress" ) 
 
 c2 = Celebrity.create(name: "Angelina Jolie", image: "https://eonlinethumbs-a.akamaihd.net/images/894/331/wochit_20200620_jolie_309185_560x315_1753720899547.jpg?fit=around|660:372&output-quality=90&crop=660:372;center,top", occupation:"Actress" ) 
@@ -41,15 +42,16 @@ c15 = Celebrity.create(name: "Drake", image: "https://static01.nyt.com/images/20
 puts "Celebrities saved"
 
 
-p1 = Post.create(celebrity_id: 1, headline:"Jennifer's Body is Making a Comeback", content:"Jennifer's Body should have made a bigger splash when it came out in 2009. As we approach Halloween, nearly ten years later, it's worth considering that its themes of abuse, empowerment, and accountability would likely be a winning formula with horror movie critics in the #MeToo era.", image:"https://img.buzzfeed.com/buzzfeed-static/static/2018-12/7/14/campaign_images/buzzfeed-prod-web-06/you-probably-owe-jennifers-body-an-apology-2-4566-1544210055-6_dblbig.jpg")
+p1 = Post.create(celebrity_id: 1, headline:"Jennifer's Body is Making a Comeback", content:"Jennifer's Body should have made a bigger splash when it came out in 2009. As we approach Halloween, nearly ten years later, it's worth considering that its themes of abuse, empowerment, and accountability would likely be a winning formula with horror movie critics in the #MeToo era.", image:"https://img.buzzfeed.com/buzzfeed-static/static/2018-12/7/14/campaign_images/buzzfeed-prod-web-06/you-probably-owe-jennifers-body-an-apology-2-4566-1544210055-6_dblbig.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p2 = Post.create(celebrity_id: 1, headline:"Unexpected Love", content:"Machine Gun Kelly just revealed he has a major thing for Megan Fox's feet and really wanted her to put them on his face for the Bloody Valentine music video. He told Teen Vogue, 'It's no secret. I think feet are beautiful. And I think Megan has the most beautiful feet that exist.'", image:"https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F06%2F27%2Fmegan-fox.jpg")
+p2 = Post.create(celebrity_id: 1, headline:"Unexpected Love", content:"Machine Gun Kelly just revealed he has a major thing for Megan Fox's feet and really wanted her to put them on his face for the Bloody Valentine music video. He told Teen Vogue, 'It's no secret. I think feet are beautiful. And I think Megan has the most beautiful feet that exist.'", image:"https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F06%2F27%2Fmegan-fox.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p3 = Post.create(celebrity_id: 15, headline:"Abel, Drake, and Showing the Receipts", content:"While some celebrities have been called out for the amount of their donations to Black Lives Matter related organisations, including bail-out funding programs for protestors and assistance to those who are both protesting and trying to protect themselves during the pandemic, considering how wealthy they are, others have been pulling up financially, not because they're trying to show off how wealthy they are but because they're challenging their peers to do the same.", image:"https://photos.laineygossip.com/thumbs/tmb_730x450_abel-drake-02jun20.jpg")
+p3 = Post.create(celebrity_id: 15, headline:"Abel, Drake, and Showing the Receipts", content:"While some celebrities have been called out for the amount of their donations to Black Lives Matter related organisations, including bail-out funding programs for protestors and assistance to those who are both protesting and trying to protect themselves during the pandemic, considering how wealthy they are, others have been pulling up financially, not because they're trying to show off how wealthy they are but because they're challenging their peers to do the same.", image:"https://photos.laineygossip.com/thumbs/tmb_730x450_abel-drake-02jun20.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p4 = Post.create(celebrity_id: 5, headline: "HELP THE BROKEN", content: "Justin Bieber urges fans to 'have compassion for those who are hurting' after visiting Kanye West at his Wyoming ranch", image:"https://static.vibe.com/files/photo_gallery_images/Tisci-3-compressed.png")
+p4 = Post.create(celebrity_id: 5, headline: "HELP THE BROKEN", content: "Justin Bieber urges fans to 'have compassion for those who are hurting' after visiting Kanye West at his Wyoming ranch", image:"https://static.vibe.com/files/photo_gallery_images/Tisci-3-compressed.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p5 = Post.create(celebrity_id: 3, headline: "Kylie Jenner spoils two-year-old daughter Stormi", content: "The baggy top was emblazoned with the words 'wish you were here' on the back.Kylie also dressed Stormi in a pair of grey shorts and added a cute half up do in her curly locks.Although the youngster's face was hidden from the camera, she confidently strode around the outdoor space with her designer purse in tow.", image:"https://i2-prod.mirror.co.uk/incoming/article22286948.ece/ALTERNATES/s615b/1_Kylie-Jenner.jpg")
+p5 = Post.create(celebrity_id: 3, headline: "Kylie Jenner spoils two-year-old daughter Stormi", content: "The baggy top was emblazoned with the words 'wish you were here' on the back.Kylie also dressed Stormi in a pair of grey shorts and added a cute half up do in her curly locks.Although the youngster's face was hidden from the camera, she confidently strode around the outdoor space with her designer purse in tow.", image:"https://i2-prod.mirror.co.uk/incoming/article22286948.ece/ALTERNATES/s615b/1_Kylie-Jenner.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
 
 puts "Posts saved"
+

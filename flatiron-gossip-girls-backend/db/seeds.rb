@@ -8,6 +8,8 @@
 
 Celebrity.delete_all
 Post.delete_all
+User.delete_all
+Follow.delete_all
 
 
 c1 = Celebrity.create(name: "Megan Fox", image: "https://www.wonderwall.com/wp-content/uploads/sites/2/2020/05/shutterstock_editorial_10495961ca.jpg?h=800", occupation: "Actress" ) 
@@ -54,4 +56,9 @@ p5 = Post.create(celebrity_id: 3, headline: "Kylie Jenner spoils two-year-old da
 
 
 puts "Posts saved"
+
+user1 = User.create(name: "Alice", email: "inWonderLand@gmail.21", image: "https://vignette.wikia.nocookie.net/disney/images/7/75/Profile_-_Alice.jpeg/revision/latest?cb=20190312054522", age: 21)
+
+puts "Users saved"
+
 

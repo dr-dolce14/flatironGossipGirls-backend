@@ -10,12 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_29_192206) do
+ActiveRecord::Schema.define(version: 2020_07_29_221426) do
 
   create_table "celebrities", force: :cascade do |t|
     t.string "name"
     t.string "image"
     t.string "occupation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "celebrity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["celebrity_id"], name: "index_follows_on_celebrity_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
+  create_table "names", force: :cascade do |t|
+    t.string "email"
+    t.string "image"
+    t.integer "age"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,5 +52,16 @@ ActiveRecord::Schema.define(version: 2020_07_29_192206) do
     t.index ["celebrity_id"], name: "index_posts_on_celebrity_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "image"
+    t.integer "age"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "follows", "celebrities"
+  add_foreign_key "follows", "users"
   add_foreign_key "posts", "celebrities"
 end

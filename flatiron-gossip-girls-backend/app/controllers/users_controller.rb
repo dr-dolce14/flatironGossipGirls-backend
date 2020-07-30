@@ -5,17 +5,10 @@ class UsersController < ApplicationController
         render json: @users, include: :follows
     end
 
-    def update
-        @user = User.find(params[:id])
-        @user.update(user_params)
-        
-        render json: @user
-    end 
-
-    private
-
-    def user_params
-        params.require(:user).permit!
+    def show
+        @user = User.find(params[:id])  
+        render json: @user, include: :follows
     end
+
 
 end

@@ -6,14 +6,15 @@ class FollowsController < ApplicationController
     end
 
     def create
-        @follow = Follow.create!(follow_params)
-        
-        render json: @follow
+        #@follow = Follow.create!(follow_params)
           
-        # @user = User.find_by(id: follow_params[:user_id])
-        # @follow = Follow.new(user_id: @user.id)
-        # @follow.save
-        # render json: @follow
+        @user = User.find_by(id: follow_params[:user_id])
+        @celebrity = Celebrity.find_by(id: follow_params[:celebrity_id])
+
+        @follow = Follow.new(user_id: @user.id, celebrity_id: @celebrity.id)
+        @follow.save
+        render json: @follow
+        
     end
 
     private

@@ -41,6 +41,12 @@ c14 = Celebrity.create(name: "Juice Wrld", image: "https://i1.wp.com/nypost.com/
 
 c15 = Celebrity.create(name: "Drake", image: "https://static01.nyt.com/images/2019/12/27/arts/27playlist/merlin_155953353_06939b86-7458-44a6-8781-57e2eaa661aa-articleLarge.jpg?quality=75&auto=webp&disable=upscale", occupation: "Rapper")
 
+c16 = Celebrity.create(name: "David Attenborough", image: "https://i.guim.co.uk/img/media/1efb5d30515ec7a5453cc629db56a8cbaa0c3f67/122_270_2914_1748/master/2914.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=a5bc12031b434d8e32f4e46b91fa6107", occupation: "Naturalist")
+
+c17 = Celebrity.create(name:"Rudy Guerrero", image:"https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/bakingsodabagels.jpg?itok=YEkgKxtZ", occupation: "Superstar")
+
+c18 = Celebrity.create(name:"Taylor Swift", image: "https://media2.s-nbcnews.com/j/newscms/2020_31/3257956/200305-taylor-swift-donation-2019-ac-455p_95906ab2089db04c06f57902c79a2a1e.fit-760w.jpg", occupation: "Singer")
+
 puts "Celebrities saved"
 
 
@@ -53,6 +59,16 @@ p3 = Post.create(celebrity_id: 15, headline:"Abel, Drake, and Showing the Receip
 p4 = Post.create(celebrity_id: 5, headline: "HELP THE BROKEN", content: "Justin Bieber urges fans to 'have compassion for those who are hurting' after visiting Kanye West at his Wyoming ranch", image:"https://static.vibe.com/files/photo_gallery_images/Tisci-3-compressed.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
 p5 = Post.create(celebrity_id: 3, headline: "Kylie Jenner spoils two-year-old daughter Stormi", content: "The baggy top was emblazoned with the words 'wish you were here' on the back.Kylie also dressed Stormi in a pair of grey shorts and added a cute half up do in her curly locks.Although the youngster's face was hidden from the camera, she confidently strode around the outdoor space with her designer purse in tow.", image:"https://i2-prod.mirror.co.uk/incoming/article22286948.ece/ALTERNATES/s615b/1_Kylie-Jenner.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+
+p6 = Post.create(celebrity_id: 17, headline: "When 2 stars collide, magic happens", content: "Rudy and Jeff were once online strangers, but this abrupt meeting sparked the beginning of a beautiful friendship!", image: "images/jeff_crossover.jpeg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+
+p7 = Post.create(celebrity_id: 17, headline: "Step aside Zac Efron, we have a new cutie in this Highschool!", content: "Preteen Rudy, gives all the hollywood heartthrobs a run for their money.", image: "/Users/maleehabhuiyan/Desktop/flatironsGossipGirlBackend/flatiron-gossip-girls-backend/images/disney.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+
+p8 = Post.create(celebrity_id: 16, headline: "A new David Attenborough documentary is coming to Netflix.", content: "What's better than curling up on the couch in front of Netflix watching nature and its animals in all their glory.
+If you have already made your way through all the nature documentaries that Netflix has to offer, fear not, as there is a new addition on the way.
+tiny Creatures is the latest offering from Attenborough which focuses on the smallest insects and animals on our planet.", image: "https://www.sustainability-times.com/wp-content/uploads/thumbs/sirdavidattenborough-37b5du1arwj0ft30l8xk3k.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+
+p9 = Post.create(celebrity_id: 17, headline: "Got milk?", content: "Rudy sparks controversy when he points out his arguments for why he believes oatmilk is the superior form of milk alternative.", image: "https://files.slack.com/files-pri/T02MD9XTF-F018FAZMPJM/rudy.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
 
 puts "Posts saved"

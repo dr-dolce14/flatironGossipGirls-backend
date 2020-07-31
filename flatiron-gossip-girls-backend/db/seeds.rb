@@ -60,7 +60,7 @@ p4 = Post.create(celebrity_id: 5, headline: "HELP THE BROKEN", content: "Justin 
 
 p5 = Post.create(celebrity_id: 3, headline: "Kylie Jenner spoils two-year-old daughter Stormi", content: "The baggy top was emblazoned with the words 'wish you were here' on the back.Kylie also dressed Stormi in a pair of grey shorts and added a cute half up do in her curly locks.Although the youngster's face was hidden from the camera, she confidently strode around the outdoor space with her designer purse in tow.", image:"https://i2-prod.mirror.co.uk/incoming/article22286948.ece/ALTERNATES/s615b/1_Kylie-Jenner.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p6 = Post.create(celebrity_id: 17, headline: "When 2 stars collide, magic happens", content: "Rudy and Jeff were once online strangers, but this abrupt meeting sparked the beginning of a beautiful friendship!", image: "images/jeff_crossover.jpeg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+p6 = Post.create(celebrity_id: 17, headline: "When 2 stars collide, magic happens", content: "Rudy and Jeff were once online strangers, but this abrupt meeting sparked the beginning of a beautiful friendship!", image: "/Users/maleehabhuiyan/Desktop/flatironsGossipGirlBackend/flatiron-gossip-girls-backend/images/crossovers.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
 p7 = Post.create(celebrity_id: 17, headline: "Step aside Zac Efron, we have a new cutie in this Highschool!", content: "Preteen Rudy, gives all the hollywood heartthrobs a run for their money.", image: "/Users/maleehabhuiyan/Desktop/flatironsGossipGirlBackend/flatiron-gossip-girls-backend/images/disney.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
@@ -68,7 +68,7 @@ p8 = Post.create(celebrity_id: 16, headline: "A new David Attenborough documenta
 If you have already made your way through all the nature documentaries that Netflix has to offer, fear not, as there is a new addition on the way.
 tiny Creatures is the latest offering from Attenborough which focuses on the smallest insects and animals on our planet.", image: "https://www.sustainability-times.com/wp-content/uploads/thumbs/sirdavidattenborough-37b5du1arwj0ft30l8xk3k.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
-p9 = Post.create(celebrity_id: 17, headline: "Got milk?", content: "Rudy sparks controversy when he points out his arguments for why he believes oatmilk is the superior form of milk alternative.", image: "https://files.slack.com/files-pri/T02MD9XTF-F018FAZMPJM/rudy.jpg", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
+p9 = Post.create(celebrity_id: 17, headline: "Got milk?", content: "Rudy sparks controversy when he points out his arguments for why he believes oatmilk is the superior form of milk alternative.", image: "/Users/maleehabhuiyan/Desktop/flatironsGossipGirlBackend/flatiron-gossip-girls-backend/images/oatmilk.png", joy: 0, shock: 0, sad: 0, anger: 0, poop: 0)
 
 
 puts "Posts saved"
